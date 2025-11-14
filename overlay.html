@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>GACKcon Overlay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', 'Roboto', 'Segoe UI', sans-serif;
+            background: transparent;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Floor colors */
+        .floor-1 { color: #d88aa6; }
+        .floor-2 { color: #7fba8b; }
+        .floor-3 { color: #7eb3d8; }
+
+        /* Floor background colors for schedule blocks */
+        .floor-1-bg { background: rgba(216, 138, 166, 0.3); border-left-color: #d88aa6; }
+        .floor-2-bg { background: rgba(127, 186, 139, 0.3); border-left-color: #7fba8b; }
+        .floor-3-bg { background: rgba(126, 179, 216, 0.3); border-left-color: #7eb3d8; }
+
+        /* Main bottom bar container */
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 270px;
+            height: 70px;
+            background: linear-gradient(180deg, rgba(13, 22, 39, 0.95) 0%, rgba(13, 22, 39, 0.98) 100%);
+            border-top: 2px solid rgba(0, 168, 255, 0.3);
+            border-right: 2px solid rgba(0, 168, 255, 0.3);
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Current panel section - left side */
+        .current-section {
+            flex: 1;
+            padding-right: 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .current-label {
+            color: #00a8ff;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 3px;
+        }
+
+        .current-content {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            align-items: stretch;
+        }
+
+        .current-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .current-title {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .current-title.text-wraps {
+            font-size: 14px;
+        }
+
+        .current-host {
+            color: #a0a0a0;
+            font-size: 12px;
+        }
+
+        .current-floor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            white-space: nowrap;
+            color: #ffffff;
+        }
+
+        .current-floor.floor-1 { color: #d88aa6; }
+        .current-floor.floor-2 { color: #7fba8b; }
+        .current-floor.floor-3 { color: #7eb3d8; }
+
+        /* Donation section - center */
+        .donation-section {
+            flex: 1;
+            padding: 0 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .donation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .donation-label {
+            color: #00ff88;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .donation-amounts {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .donation-current {
+            color: #00ff88;
+        }
+
+        .donation-goal {
+            color: #a0a0a0;
+        }
+
+        .donation-progress-container {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            height: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .donation-progress-bar {
+            background: linear-gradient(90deg, #00ff88 0%, #00d4aa 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Next up section - right side of bottom bar */
+        .next-section {
+            flex: 1;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .next-label {
+            color: #ffa500;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 3px;
+        }
+
+        .next-content {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            align-items: stretch;
+        }
+
+        .next-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .next-title {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .next-title.text-wraps {
+            font-size: 14px;
+        }
+
+        .next-host {
+            color: #a0a0a0;
+            font-size: 12px;
+        }
+
+        .next-badges {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .next-time {
+            color: #ffa500;
+            font-size: 20px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .next-floor {
+            font-weight: 700;
+            font-size: 20px;
+            white-space: nowrap;
+            color: #ffffff;
+        }
+
+        .next-floor.floor-1 { color: #d88aa6; }
+        .next-floor.floor-2 { color: #7fba8b; }
+        .next-floor.floor-3 { color: #7eb3d8; }
+
+        /* Right side schedule panel */
+        .schedule-sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 270px;
+            background: linear-gradient(180deg, rgba(13, 22, 39, 0.95) 0%, rgba(13, 22, 39, 0.98) 100%);
+            border-left: 2px solid rgba(0, 168, 255, 0.3);
+            padding: 12px 6px;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .schedule-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .schedule-sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .schedule-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(0, 168, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .schedule-header {
+            color: #00a8ff;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .schedule-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        .schedule-timeline {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .schedule-time-slot {
+            position: relative;
+            height: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .schedule-time-label {
+            position: absolute;
+            left: 0;
+            top: -8px;
+            color: #606060;
+            font-size: 8px;
+            font-weight: 600;
+            background: rgba(13, 22, 39, 0.95);
+            padding: 0 2px;
+            width: 34px;
+            white-space: nowrap;
+            overflow: visible;
+        }
+
+        .schedule-panel-block {
+            position: absolute;
+            left: 36px;
+            right: 2px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            border-left: 3px solid;
+            transition: opacity 0.3s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .schedule-panel-block.half-width {
+            width: calc((100% - 38px) / 2 - 2px);
+        }
+
+        .schedule-panel-block.half-width.left {
+            left: 36px;
+        }
+
+        .schedule-panel-block.half-width.right {
+            left: calc(36px + (100% - 38px) / 2 + 2px);
+        }
+
+        .schedule-panel-block:hover {
+            transform: translateX(-2px);
+            z-index: 10;
+        }
+
+        .schedule-panel-block.past {
+            opacity: 0.4;
+            filter: grayscale(0.5);
+        }
+
+        .schedule-panel-block.current {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 4px 12px rgba(255, 255, 255, 0.5);
+            border-left-width: 5px;
+            animation: currentPulse 2s ease-in-out infinite;
+        }
+
+        .schedule-panel-block.current .schedule-panel-title {
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes currentPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 4px 12px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 1), 0 4px 16px rgba(255, 255, 255, 0.7);
+            }
+        }
+
+        .schedule-panel-block.intermission {
+            background: rgba(50, 50, 50, 0.3) !important;
+            border-left-color: #555 !important;
+            border-left-style: dashed;
+        }
+
+        .schedule-panel-title {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Smaller font for panels where text doesn't fit */
+        .schedule-panel-block.text-wraps {
+            padding: 2px 6px;
+        }
+
+        .schedule-panel-block.text-wraps .schedule-panel-title {
+            font-size: 11px;
+            line-height: 1.15;
+        }
+
+        /* Floor legend at bottom of schedule */
+        .floor-legend {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            justify-content: center;
+        }
+
+        .floor-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 8px;
+            color: #a0a0a0;
+        }
+
+        .floor-legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+        <!-- Current Panel Section -->
+        <div class="current-section">
+            <div class="current-label">NOW SHOWING</div>
+            <div class="current-content">
+                <div class="current-info">
+                    <div class="current-title" id="currentTitle">Welcome to GACKcon!</div>
+                    <div class="current-host" id="currentHost">Hosted by TBA</div>
+                </div>
+                <div class="current-floor" id="currentFloor">Floor 1</div>
+            </div>
+        </div>
+
+        <!-- Donation Section -->
+        <div class="donation-section">
+            <div class="donation-header">
+                <div class="donation-label">DONATION TOTAL</div>
+                <div class="donation-amounts">
+                    <span class="donation-current" id="currentAmount">$0</span>
+                    <span class="donation-goal"> / $<span id="goalAmount">5,000</span></span>
+                </div>
+            </div>
+            <div class="donation-progress-container">
+                <div class="donation-progress-bar" id="donationProgress"></div>
+            </div>
+        </div>
+
+        <!-- Next Up Section -->
+        <div class="next-section">
+            <div class="next-label">UP NEXT</div>
+            <div class="next-content">
+                <div class="next-info">
+                    <div class="next-title" id="nextTitle">Opening Ceremony</div>
+                    <div class="next-host" id="nextHost">Hosted by TBA</div>
+                </div>
+                <div class="next-badges">
+                    <div class="next-floor" id="nextFloor">Floor 1</div>
+                    <div class="next-time" id="nextTime">in 5 min</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side Schedule -->
+    <div class="schedule-sidebar">
+        <div class="schedule-header">TODAY'S SCHEDULE</div>
+        <div class="schedule-list" id="fullSchedule">
+            <!-- Schedule timeline will be populated by JavaScript -->
+        </div>
+        <div class="floor-legend">
+            <div class="floor-legend-item">
+                <div class="floor-legend-color" style="background: rgba(216, 138, 166, 0.6);"></div>
+                <span>Floor 1</span>
+            </div>
+            <div class="floor-legend-item">
+                <div class="floor-legend-color" style="background: rgba(127, 186, 139, 0.6);"></div>
+                <span>Floor 2</span>
+            </div>
+            <div class="floor-legend-item">
+                <div class="floor-legend-color" style="background: rgba(126, 179, 216, 0.6);"></div>
+                <span>Floor 3</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            donationApiUrl: 'https://your-api-endpoint.com/donations', // Replace with your API endpoint
+            donationGoal: 5000,
+            refreshInterval: 30000, // 30 seconds
+            updateScheduleInterval: 60000 // 1 minute
+        };
+
+        // Update donation progress
+        async function updateDonations() {
+            try {
+                const response = await fetch(CONFIG.donationApiUrl);
+                const data = await response.json();
+
+                const currentAmount = data.total || 0; // Adjust based on your API response
+                const percentage = Math.min((currentAmount / CONFIG.donationGoal) * 100, 100);
+
+                document.getElementById('currentAmount').textContent = `$${currentAmount.toLocaleString()}`;
+                document.getElementById('goalAmount').textContent = `$${CONFIG.donationGoal.toLocaleString()}`;
+                document.getElementById('donationProgress').style.width = `${percentage}%`;
+            } catch (error) {
+                console.error('Error fetching donations:', error);
+                // Use fallback/default values if API fails
+            }
+        }
+
+        // Helper: Get floor class
+        function getFloorClass(floor) {
+            const floorNum = typeof floor === 'string' ? floor.toLowerCase().replace(/\D/g, '') : floor;
+            return `floor-${floorNum}`;
+        }
+
+        // Helper: Format floor text
+        function formatFloor(floor) {
+            const floorNum = typeof floor === 'string' ? floor.toLowerCase().replace(/\D/g, '') : floor;
+            return `Floor ${floorNum}`;
+        }
+
+        // Helper: Parse datetime string to Date object
+        function parseTime(datetimeStr) {
+            // Support both ISO format "2025-01-15T11:00:00" and readable format "2025-01-15 11:00 AM"
+            if (datetimeStr.includes('T')) {
+                // ISO format
+                return new Date(datetimeStr);
+            } else {
+                // Readable format: "2025-01-15 11:00 AM"
+                const parts = datetimeStr.split(' ');
+                const datePart = parts[0]; // "2025-01-15"
+                const timePart = parts[1]; // "11:00"
+                const period = parts[2];   // "AM" or "PM"
+
+                let [hours, minutes] = timePart.split(':').map(Number);
+
+                if (period === 'PM' && hours !== 12) hours += 12;
+                if (period === 'AM' && hours === 12) hours = 0;
+
+                const [year, month, day] = datePart.split('-').map(Number);
+                return new Date(year, month - 1, day, hours, minutes || 0, 0, 0);
+            }
+        }
+
+        // Helper: Format date for display (e.g., "Fri, Jan 15")
+        function formatDate(dateStr) {
+            const date = parseTime(dateStr);
+            const options = { weekday: 'short', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Helper: Format time for display (e.g., "11:00 AM")
+        function formatTime(datetimeStr) {
+            const date = parseTime(datetimeStr);
+            return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+
+        // Helper: Calculate minutes until event
+        function getMinutesUntil(starttimeStr) {
+            const eventTime = parseTime(starttimeStr);
+            const now = new Date();
+            const diffMs = eventTime - now;
+            return Math.floor(diffMs / 60000);
+        }
+
+        // Update current panel info
+        function updateCurrentPanel(title, host, floor) {
+            const titleEl = document.getElementById('currentTitle');
+            titleEl.textContent = title;
+            titleEl.classList.remove('text-wraps');
+
+            document.getElementById('currentHost').textContent = `Hosted by ${host}`;
+            const floorEl = document.getElementById('currentFloor');
+
+            if (floor === null || floor === undefined) {
+                floorEl.style.display = 'none';
+            } else {
+                floorEl.style.display = 'flex';
+                floorEl.textContent = formatFloor(floor);
+                floorEl.className = 'current-floor';
+                floorEl.classList.add(getFloorClass(floor));
+            }
+
+            // Check if title wraps and apply smaller font
+            requestAnimationFrame(() => {
+                if (titleEl.scrollHeight > titleEl.clientHeight) {
+                    titleEl.classList.add('text-wraps');
+                }
+            });
+        }
+
+        // Update next panel
+        function updateNextPanel(next) {
+            if (!next) return;
+
+            const titleEl = document.getElementById('nextTitle');
+            titleEl.textContent = next.title;
+            titleEl.classList.remove('text-wraps');
+
+            document.getElementById('nextHost').textContent = `Hosted by ${next.host || 'TBA'}`;
+
+            const floorEl = document.getElementById('nextFloor');
+            if (next.floor === null || next.floor === undefined) {
+                floorEl.style.display = 'none';
+            } else {
+                floorEl.style.display = 'flex';
+                floorEl.textContent = formatFloor(next.floor);
+                floorEl.className = 'next-floor';
+                floorEl.classList.add(getFloorClass(next.floor));
+            }
+
+            const minutes = getMinutesUntil(next.starttime);
+            const timeEl = document.getElementById('nextTime');
+            if (minutes <= 0) {
+                timeEl.textContent = 'starting now';
+            } else if (minutes === 1) {
+                timeEl.textContent = 'in 1 min';
+            } else {
+                timeEl.textContent = `in ${minutes} min`;
+            }
+
+            // Check if title wraps and apply smaller font
+            requestAnimationFrame(() => {
+                if (titleEl.scrollHeight > titleEl.clientHeight) {
+                    titleEl.classList.add('text-wraps');
+                }
+            });
+        }
+
+        // Update full schedule sidebar with timeline view
+        function updateFullSchedule(scheduleItems) {
+            const container = document.getElementById('fullSchedule');
+            const now = new Date();
+
+            if (scheduleItems.length === 0) {
+                container.innerHTML = '<div style="color: #888; padding: 20px; text-align: center;">No events scheduled</div>';
+                return;
+            }
+
+            // Get time range (11 AM to 2 AM next day = 15 hours = 30 time slots)
+            const firstItem = parseTime(scheduleItems[0].starttime);
+            const startHour = 11; // 11 AM
+            const timeSlots = [];
+
+            // Create time slots (30-minute increments from 11 AM to 2 AM)
+            for (let i = 0; i < 30; i++) {
+                let hour24 = startHour + Math.floor(i / 2);
+                const minute = (i % 2) * 30;
+
+                // Handle hours past 24 (wrap to next day)
+                const actualHour = hour24 % 24;
+
+                // Calculate display hour and AM/PM
+                let displayHour = actualHour;
+                let ampm = 'AM';
+
+                if (actualHour === 0) {
+                    displayHour = 12;
+                    ampm = 'AM';
+                } else if (actualHour < 12) {
+                    displayHour = actualHour;
+                    ampm = 'AM';
+                } else if (actualHour === 12) {
+                    displayHour = 12;
+                    ampm = 'PM';
+                } else {
+                    displayHour = actualHour - 12;
+                    ampm = 'PM';
+                }
+
+                timeSlots.push({
+                    hour24: actualHour,
+                    minute: minute,
+                    label: `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`,
+                    index: i
+                });
+            }
+
+            // Calculate dynamic slot height to fill available space
+            // The container will render first, then we'll measure and adjust
+            const timelineId = 'schedule-timeline-' + Date.now();
+
+            // Build timeline HTML
+            let html = `<div class="schedule-timeline" id="${timelineId}">`;
+
+            // Add time slots (height will be set dynamically)
+            timeSlots.forEach(slot => {
+                html += `
+                    <div class="schedule-time-slot" data-slot-index="${slot.index}">
+                        <div class="schedule-time-label">${slot.label}</div>
+                    </div>
+                `;
+            });
+
+            // Detect overlapping panels
+            const itemsWithPosition = scheduleItems.map((item, index) => {
+                const itemStart = parseTime(item.starttime);
+                const startMinutes = itemStart.getHours() * 60 + itemStart.getMinutes();
+                const baseMinutes = startHour * 60;
+                let offsetMinutes = startMinutes - baseMinutes;
+                if (offsetMinutes < 0) offsetMinutes += 24 * 60;
+
+                return {
+                    ...item,
+                    index,
+                    startOffset: offsetMinutes,
+                    endOffset: offsetMinutes + item.duration
+                };
+            });
+
+            // Check for overlaps and assign positions
+            const positioned = itemsWithPosition.map((item, i) => {
+                const overlaps = itemsWithPosition.filter((other, j) => {
+                    if (i === j) return false;
+                    // Check if they overlap in time
+                    return !(item.endOffset <= other.startOffset || item.startOffset >= other.endOffset);
+                });
+
+                let overlapIndex = 0;
+                if (overlaps.length > 0) {
+                    const firstOverlap = overlaps[0];
+                    // If start times are different, earlier one goes left
+                    if (item.startOffset < firstOverlap.startOffset) {
+                        overlapIndex = 0;
+                    } else if (item.startOffset > firstOverlap.startOffset) {
+                        overlapIndex = 1;
+                    } else {
+                        // Same start time, use original index as tie-breaker
+                        overlapIndex = item.index < firstOverlap.index ? 0 : 1;
+                    }
+                }
+
+                const itemStart = parseTime(item.starttime);
+                const diffMinutes = Math.floor((itemStart - now) / 60000);
+
+                return {
+                    ...item,
+                    hasOverlap: overlaps.length > 0,
+                    overlapIndex: overlapIndex,
+                    diffMinutes
+                };
+            });
+
+            const itemsToRender = positioned;
+
+            html += '</div>';
+            container.innerHTML = html;
+
+            // After rendering, calculate dynamic slot height and add panels
+            requestAnimationFrame(() => {
+                const timeline = document.getElementById(timelineId);
+                if (!timeline) return;
+
+                const availableHeight = timeline.clientHeight;
+                const slotHeight = availableHeight / 30; // 30 slots for 15 hours
+
+                // Update time slot heights
+                const slots = timeline.querySelectorAll('.schedule-time-slot');
+                slots.forEach(slot => {
+                    slot.style.height = `${slotHeight}px`;
+                });
+
+                // Add panel blocks with dynamic positioning
+                itemsToRender.forEach(item => {
+                    const topPosition = (item.startOffset / 30) * slotHeight;
+                    const height = (item.duration / 30) * slotHeight - 2;
+
+                    // Determine state
+                    let stateClass = '';
+                    if (item.diffMinutes < -item.duration) {
+                        stateClass = 'past';
+                    } else if (item.diffMinutes < 0) {
+                        stateClass = 'current';
+                    }
+
+                    // Check for intermission
+                    const isIntermission = item.title.includes('INTERMISSION');
+                    if (isIntermission) {
+                        stateClass += ' intermission';
+                    }
+
+                    // Handle overlapping panels
+                    let widthClass = '';
+                    if (item.hasOverlap) {
+                        widthClass = item.overlapIndex === 0 ? 'half-width left' : 'half-width right';
+                    }
+
+                    // Get floor background class
+                    const floorNum = typeof item.floor === 'string' ? item.floor.toLowerCase().replace(/\D/g, '') : item.floor;
+                    const floorBgClass = isIntermission ? '' : `floor-${floorNum}-bg`;
+
+                    const panelDiv = document.createElement('div');
+                    panelDiv.className = `schedule-panel-block ${stateClass} ${widthClass} ${floorBgClass}`;
+                    panelDiv.style.top = `${topPosition}px`;
+                    panelDiv.style.height = `${height}px`;
+                    panelDiv.innerHTML = `<div class="schedule-panel-title">${item.title}</div>`;
+                    timeline.appendChild(panelDiv);
+                });
+
+                // Check which panels need smaller text to fit
+                const allPanels = timeline.querySelectorAll('.schedule-panel-block');
+                allPanels.forEach(panel => {
+                    const title = panel.querySelector('.schedule-panel-title');
+                    if (title && title.scrollHeight > title.clientHeight) {
+                        panel.classList.add('text-wraps');
+                    }
+                });
+            });
+        }
+
+        // Helper: Get today's event day range (11am today to 2am tomorrow, or 11am yesterday to 2am today if currently between midnight-2am)
+        function getTodayEventRange() {
+            const now = new Date();
+            let startTime, endTime;
+
+            if (now.getHours() >= 0 && now.getHours() < 2) {
+                // Between midnight and 2am - we're in the late night of yesterday's event
+                startTime = new Date(now);
+                startTime.setDate(startTime.getDate() - 1);
+                startTime.setHours(11, 0, 0, 0);
+
+                endTime = new Date(now);
+                endTime.setHours(2, 0, 0, 0);
+            } else if (now.getHours() >= 2 && now.getHours() < 11) {
+                // Between 2am and 11am - next event day
+                startTime = new Date(now);
+                startTime.setHours(11, 0, 0, 0);
+
+                endTime = new Date(now);
+                endTime.setDate(endTime.getDate() + 1);
+                endTime.setHours(2, 0, 0, 0);
+            } else {
+                // Between 11am and midnight - current event day
+                startTime = new Date(now);
+                startTime.setHours(11, 0, 0, 0);
+
+                endTime = new Date(now);
+                endTime.setDate(endTime.getDate() + 1);
+                endTime.setHours(2, 0, 0, 0);
+            }
+
+            return { startTime, endTime };
+        }
+
+        // Load schedule from JSON file or API
+        async function loadSchedule() {
+            try {
+                const response = await fetch('schedule.json');
+                const data = await response.json();
+
+                // Get today's event range
+                const { startTime, endTime } = getTodayEventRange();
+
+                // Filter schedule to only today's events (11am to 2am)
+                const todaySchedule = data.schedule.filter(item => {
+                    const itemTime = parseTime(item.starttime);
+                    return itemTime >= startTime && itemTime <= endTime;
+                });
+
+                // Calculate minutes until each event
+                const now = new Date();
+                const scheduleWithTiming = todaySchedule.map(item => ({
+                    ...item,
+                    minutes: getMinutesUntil(item.starttime)
+                }));
+
+                // Find current panel (started but not ended yet)
+                const currentPanel = scheduleWithTiming
+                    .filter(item => item.minutes < 0 && item.minutes > -item.duration) // Started, but not ended
+                    .sort((a, b) => b.minutes - a.minutes)[0]; // Most recent
+
+                if (currentPanel) {
+                    updateCurrentPanel(currentPanel.title, currentPanel.host || 'TBA', currentPanel.floor);
+                }
+
+                // Find next upcoming panel
+                const upcoming = scheduleWithTiming
+                    .filter(item => item.minutes >= 0)
+                    .sort((a, b) => a.minutes - b.minutes);
+
+                if (upcoming.length > 0) {
+                    updateNextPanel(upcoming[0]);
+                }
+
+                // Update full schedule sidebar with only today's events
+                updateFullSchedule(todaySchedule);
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+            }
+        }
+
+        // Initialize
+        updateDonations();
+        loadSchedule();
+
+        // Set up refresh intervals
+        setInterval(updateDonations, CONFIG.refreshInterval);
+        setInterval(loadSchedule, CONFIG.updateScheduleInterval);
+
+        // Update time remaining every 30 seconds
+        setInterval(() => {
+            // Just refresh the schedule to update times
+            loadSchedule();
+        }, 30000);
+
+        // Listen for custom events (optional - for manual updates via OBS browser source interaction)
+        window.addEventListener('updateOverlay', (event) => {
+            if (event.detail.donations) updateDonations();
+            if (event.detail.schedule) loadSchedule();
+            if (event.detail.current) {
+                updateCurrentPanel(
+                    event.detail.current.title,
+                    event.detail.current.host,
+                    event.detail.current.floor
+                );
+            }
+        });
+    </script>
+</body>
+</html>

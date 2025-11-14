@@ -1,0 +1,277 @@
+{
+  "schedule": [
+    {
+      "starttime": "2025-11-14 12:00 PM",
+      "duration": 30,
+      "title": "Opening Shots",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-14 12:30 PM",
+      "duration": 30,
+      "title": "A Dive through Daily Games",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-14 1:00 PM",
+      "duration": 30,
+      "title": "Jesse's Kindergarten Korner",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-14 1:30 PM",
+      "duration": 60,
+      "title": "Valentine's Day Exchange",
+      "host": "TBA",
+      "floor": 2
+    },
+    {
+      "starttime": "2025-11-14 2:30 PM",
+      "duration": 60,
+      "title": "Keep Talking and Nobody Brickspoldes - Keep Talking and Nobody Brickspoldes",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 3:30 PM",
+      "duration": 30,
+      "title": "Let's Play Steve Jackson's Sorcery",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 4:00 PM",
+      "duration": 60,
+      "title": "BAMily Feud",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 5:00 PM",
+      "duration": 60,
+      "title": "INTERMISSION! (No Panels)",
+      "host": "TBA",
+      "floor": null
+    },
+    {
+      "starttime": "2025-11-14 6:00 PM",
+      "duration": 30,
+      "title": "Tour de GACKcon",
+      "host": "TBA",
+      "floor": null
+    },
+    {
+      "starttime": "2025-11-14 6:30 PM",
+      "duration": 30,
+      "title": "Kingdom Hearts Explained in 20 Minutes",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 7:00 PM",
+      "duration": 30,
+      "title": "Learn to Pokemon ROM Hack - Play your Ultimate 151",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 7:30 PM",
+      "duration": 60,
+      "title": "Horror Movie Tier Maker 2024 Edition",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 8:30 PM",
+      "duration": 90,
+      "title": "Bar Pretender 2: A False Potion",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-14 10:00 PM",
+      "duration": 60,
+      "title": "Dr Magnethands",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-14 11:00 PM",
+      "duration": 120,
+      "title": "RAVE",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-14 11:00 PM",
+      "duration": 60,
+      "title": "Hear Me Out cake",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 12:00 AM",
+      "duration": 120,
+      "title": "FRAT GAMES",
+      "host": "TBA",
+      "floor": 2
+    },
+    {
+      "starttime": "2025-11-15 11:00 AM",
+      "duration": 60,
+      "title": "4th Annual Egg-Off!",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-15 12:00 PM",
+      "duration": 30,
+      "title": "The Coffee Challenge",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 12:30 PM",
+      "duration": 30,
+      "title": "Reality TV in 2024",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 1:00 PM",
+      "duration": 60,
+      "title": "Puzzle Setting 101",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 2:00 PM",
+      "duration": 60,
+      "title": "Narrowing down to the ultimate 151 Pokemon",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 3:00 PM",
+      "duration": 30,
+      "title": "3e and 43: the Bush Years",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 3:30 PM",
+      "duration": 60,
+      "title": "Lightning Talks",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-15 4:30 PM",
+      "duration": 30,
+      "title": "AMV Contest",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-15 6:00 PM",
+      "duration": 60,
+      "title": "Tieranee's Spelling Bee",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-15 7:00 PM",
+      "duration": 60,
+      "title": "Um, GACKtually",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 8:00 PM",
+      "duration": 30,
+      "title": "A Dungeons and Dragons Murder Mystery (D&DMM)",
+      "host": "TBA",
+      "floor": 1
+    },
+    {
+      "starttime": "2025-11-15 8:30 PM",
+      "duration": 30,
+      "title": "PowerPoint Karaoke",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 9:00 PM",
+      "duration": 60,
+      "title": "Tier Maker Night Court",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-15 10:00 PM",
+      "duration": 120,
+      "title": "Retro Game Randomizer 2025",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 1:00 PM",
+      "duration": 60,
+      "title": "Tier Maker Court",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 2:00 PM",
+      "duration": 60,
+      "title": "A Spoiler Free Guide to Twin Cities Escape Rooms",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 3:00 PM",
+      "duration": 60,
+      "title": "Ecology of DeviantArt",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 4:00 PM",
+      "duration": 30,
+      "title": "Mini Painting 101",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 4:30 PM",
+      "duration": 30,
+      "title": "Breaking News: No Laughing Teleprompter",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 6:00 PM",
+      "duration": 60,
+      "title": "Truth or Truth or Bath: An Oral History",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 7:00 PM",
+      "duration": 60,
+      "title": "Scary Stories to Share in the Dark",
+      "host": "TBA",
+      "floor": 3
+    },
+    {
+      "starttime": "2025-11-16 8:00 PM",
+      "duration": 60,
+      "title": "GACKcon Feedback Panel",
+      "host": "TBA",
+      "floor": 3
+    }
+  ]
+}
