@@ -472,6 +472,31 @@
             border-radius: 2px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
+        /* Current time indicator line */
+        .current-time-indicator {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffa500;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.8), 0 0 4px rgba(255, 165, 0, 0.6);
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .current-time-indicator::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -483,7 +508,7 @@
             <div class="current-content">
                 <div class="current-info">
                     <div class="current-title" id="currentTitle">Welcome to GACKcon!</div>
-                    <div class="current-host" id="currentHost">Hosted by TBA</div>
+                    <div class="current-host" id="currentHost">Hosted by GACK</div>
                 </div>
                 <div class="current-floor" id="currentFloor">Floor 1</div>
             </div>
@@ -510,7 +535,7 @@
             <div class="next-content">
                 <div class="next-info">
                     <div class="next-title" id="nextTitle">Opening Ceremony</div>
-                    <div class="next-host" id="nextHost">Hosted by TBA</div>
+                    <div class="next-host" id="nextHost">Hosted by GACK</div>
                 </div>
                 <div class="next-badges">
                     <div class="next-floor" id="nextFloor">Floor 1</div>
@@ -741,7 +766,7 @@
             const eventTime = parseTime(starttimeStr);
             const now = new Date();
             const diffMs = eventTime - now;
-            return Math.floor(diffMs / 60000);
+            return Math.ceil(diffMs / 60000);
         }
 
         // Update current panel info
@@ -986,7 +1011,49 @@
                         panel.classList.add('text-wraps');
                     }
                 });
+
+                // Add current time indicator
+                updateCurrentTimeIndicator(timeline, slotHeight);
             });
+        }
+
+        // Update current time indicator position
+        function updateCurrentTimeIndicator(timeline, slotHeight) {
+            if (!timeline) return;
+
+            const now = new Date();
+            const startHour = 11; // 11 AM
+            let currentMinutes = now.getHours() * 60 + now.getMinutes();
+            const baseMinutes = startHour * 60;
+
+            // Calculate offset from 11 AM
+            let offsetMinutes = currentMinutes - baseMinutes;
+
+            // Handle times after midnight (0 AM - 2 AM are part of previous day's event)
+            if (currentMinutes < 2 * 60) { // Before 2 AM
+                offsetMinutes = currentMinutes + (24 * 60) - baseMinutes;
+            }
+
+            // Only show indicator if we're within the schedule range (11 AM to 2 AM = 15 hours = 900 minutes)
+            if (offsetMinutes >= 0 && offsetMinutes <= 900) {
+                const position = (offsetMinutes / 30) * slotHeight;
+
+                // Check if indicator already exists
+                let indicator = timeline.querySelector('.current-time-indicator');
+                if (!indicator) {
+                    indicator = document.createElement('div');
+                    indicator.className = 'current-time-indicator';
+                    timeline.appendChild(indicator);
+                }
+
+                indicator.style.top = `${position}px`;
+            } else {
+                // Remove indicator if outside schedule range
+                const indicator = timeline.querySelector('.current-time-indicator');
+                if (indicator) {
+                    indicator.remove();
+                }
+            }
         }
 
         // Helper: Get today's event day range (11am today to 2am tomorrow, or 11am yesterday to 2am today if currently between midnight-2am)
@@ -1091,11 +1158,11 @@
         setInterval(updateDonations, CONFIG.refreshInterval);
         setInterval(loadSchedule, CONFIG.updateScheduleInterval);
 
-        // Update time remaining every 30 seconds
+        // Update time remaining and current time indicator every 15 seconds
         setInterval(() => {
-            // Just refresh the schedule to update times
+            // Just refresh the schedule to update times and time indicator
             loadSchedule();
-        }, 30000);
+        }, 15000);
 
         // Listen for custom events (optional - for manual updates via OBS browser source interaction)
         window.addEventListener('updateOverlay', (event) => {
