@@ -124,6 +124,7 @@
             flex: 1;
             padding: 0 30px;
             border-right: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
         }
 
         .donation-header {
@@ -167,9 +168,46 @@
             background: linear-gradient(90deg, #00ff88 0%, #00d4aa 100%);
             height: 100%;
             width: 0%;
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Donation increase popup */
+        .donation-popup {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff88;
+            font-size: 24px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 255, 136, 0.8), 0 0 12px rgba(0, 255, 136, 0.6);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        @keyframes donationPopup {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px) scale(0.8);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1.2);
+            }
+            20% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px) scale(0.9);
+            }
         }
 
         /* Next up section - right side of bottom bar */
@@ -453,6 +491,7 @@
 
         <!-- Donation Section -->
         <div class="donation-section">
+            <div class="donation-popup" id="donationPopup"></div>
             <div class="donation-header">
                 <div class="donation-label">DONATION TOTAL</div>
                 <div class="donation-amounts">
@@ -506,26 +545,145 @@
     <script>
         // Configuration
         const CONFIG = {
-            donationApiUrl: 'https://your-api-endpoint.com/donations', // Replace with your API endpoint
+            donationApiUrl: 'https://gackcon.org/donation-webhook/get-total',
             donationGoal: 5000,
-            refreshInterval: 30000, // 30 seconds
-            updateScheduleInterval: 60000 // 1 minute
+            refreshInterval: 5000, // 5 seconds
+            updateScheduleInterval: 60000, // 1 minute
+            useMockData: false // Set to true to test with mock data
         };
+
+        // Track previous donation amount
+        let previousDonationAmount = 0;
+        let mockDonationAmount = 3.58; // Starting amount for mock mode
+
+        // Animate counter from start to end value
+        function animateCounter(element, start, end, duration) {
+            const startTime = performance.now();
+            const change = end - start;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function for smooth count up
+                const easeOutQuad = progress * (2 - progress);
+                const current = start + (change * easeOutQuad);
+
+                // Format with 2 decimal places
+                const formatted = current.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                element.textContent = `$${formatted}`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    const finalFormatted = end.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    element.textContent = `$${finalFormatted}`;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Animate progress bar from start to end percentage
+        function animateProgressBar(element, startPercent, endPercent, duration) {
+            const startTime = performance.now();
+            const change = endPercent - startPercent;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function
+                const easeOutQuad = progress * (2 - progress);
+                const current = startPercent + (change * easeOutQuad);
+
+                element.style.width = `${current}%`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.style.width = `${endPercent}%`;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
 
         // Update donation progress
         async function updateDonations() {
             try {
-                const response = await fetch(CONFIG.donationApiUrl);
-                const data = await response.json();
+                let data;
 
-                const currentAmount = data.total || 0; // Adjust based on your API response
+                if (CONFIG.useMockData) {
+                    // Mock data for testing (simulates increasing donations)
+                    // Increase by $5.00 - $25.00 randomly each update
+                    mockDonationAmount += (Math.random() * 20 + 5);
+                    data = { donationsTotal: parseFloat(mockDonationAmount.toFixed(2)), donationsCount: 2 };
+                    console.log('Using mock donation data:', data);
+                } else {
+                    console.log('Fetching donations from:', CONFIG.donationApiUrl);
+                    const response = await fetch(CONFIG.donationApiUrl);
+
+                    if (!response.ok) {
+                        console.error('API response not OK:', response.status, response.statusText);
+                        return;
+                    }
+
+                    data = await response.json();
+                    console.log('Donation data received:', data);
+                }
+
+                const currentAmount = data.donationsTotal || 0;
                 const percentage = Math.min((currentAmount / CONFIG.donationGoal) * 100, 100);
 
-                document.getElementById('currentAmount').textContent = `$${currentAmount.toLocaleString()}`;
-                document.getElementById('goalAmount').textContent = `$${CONFIG.donationGoal.toLocaleString()}`;
-                document.getElementById('donationProgress').style.width = `${percentage}%`;
+                // Check if amount increased
+                if (currentAmount > previousDonationAmount && previousDonationAmount > 0) {
+                    const increase = currentAmount - previousDonationAmount;
+                    const previousPercentage = Math.min((previousDonationAmount / CONFIG.donationGoal) * 100, 100);
+
+                    console.log(`Donation increased by $${increase} (from $${previousDonationAmount} to $${currentAmount})`);
+
+                    // Show popup with increase amount (formatted with decimals)
+                    const popup = document.getElementById('donationPopup');
+                    const increaseFormatted = increase.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    popup.textContent = `+$${increaseFormatted}`;
+                    popup.style.animation = 'none';
+
+                    // Trigger reflow to restart animation
+                    void popup.offsetWidth;
+                    popup.style.animation = 'donationPopup 3s ease-out';
+
+                    // Animate counter and progress bar
+                    const amountElement = document.getElementById('currentAmount');
+                    const progressBar = document.getElementById('donationProgress');
+
+                    animateCounter(amountElement, previousDonationAmount, currentAmount, 3000);
+                    animateProgressBar(progressBar, previousPercentage, percentage, 3000);
+                } else {
+                    // First load or no change - just update directly
+                    console.log(`Setting donation amount to $${currentAmount} (no animation)`);
+                    const formatted = currentAmount.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('currentAmount').textContent = `$${formatted}`;
+                    document.getElementById('donationProgress').style.width = `${percentage}%`;
+                }
+
+                document.getElementById('goalAmount').textContent = CONFIG.donationGoal.toLocaleString();
+                previousDonationAmount = currentAmount;
             } catch (error) {
                 console.error('Error fetching donations:', error);
+                console.error('Error details:', error.message);
                 // Use fallback/default values if API fails
             }
         }
@@ -913,8 +1071,21 @@
         }
 
         // Initialize
+        console.log('=== Overlay Initializing ===');
+        console.log('Config:', CONFIG);
         updateDonations();
         loadSchedule();
+
+        // Add status to page title for debugging
+        setTimeout(() => {
+            if (previousDonationAmount === 0 && !CONFIG.useMockData) {
+                document.title = 'GACKcon Overlay - Donation API Failed';
+                console.error('⚠️ Donation API appears to have failed - still showing $0');
+            } else {
+                document.title = 'GACKcon Overlay - Running';
+                console.log('✓ Donation API loaded successfully');
+            }
+        }, 3000);
 
         // Set up refresh intervals
         setInterval(updateDonations, CONFIG.refreshInterval);
