@@ -1,277 +1,584 @@
 {
   "schedule": [
     {
-      "starttime": "2025-11-14 12:00 PM",
+      "starttime": "2026-02-13 12:00 PM",
       "duration": 30,
       "title": "Opening Shots",
-      "host": "TBA",
-      "floor": 1
+      "host": "GACK",
+      "floor": 1,
+      "tags": [
+        "Drink"
+      ],
+      "description": "Jumpstart three days of nerdy partying with a rousing toast and a celebratory shot!"
     },
     {
-      "starttime": "2025-11-14 12:30 PM",
+      "starttime": "2026-02-13 12:30 PM",
       "duration": 30,
-      "title": "A Dive through Daily Games",
-      "host": "TBA",
-      "floor": 1
+      "title": "Can we beat 30 daily games in 30 minutes?",
+      "host": "Kat",
+      "floor": 1,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "The daily games genre has only grown from games like Wordle to Tradle to Rule34dle. It's time to push ourselves as a group and attempt to successfully solve 30 games in just 30 minutes."
     },
     {
-      "starttime": "2025-11-14 1:00 PM",
+      "starttime": "2026-02-13 1:00 PM",
+      "duration": 60,
+      "title": "Weird Old PC Playalong",
+      "host": "Jason",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Jason leads you through a series of weird PC games from the late 90's or earlier. With many laying the groundwork for game genres either still active today or long long dead, attendees will get the chance to better appreciate things like \"game tutorials\" or \"sane game controls\"."
+    },
+    {
+      "starttime": "2026-02-13 2:00 PM",
+      "duration": 60,
+      "title": "Blind/Deaf/Mute Baking",
+      "host": "Kat & Grayson",
+      "floor": 2,
+      "tags": [
+        "Game Show",
+        "Food"
+      ],
+      "description": "Can three impaired people bake something edible and ideally tasty? We will be baking the Hear Me Out cake. We may have a recipe, but only the mute baker can see it, only the blind baker can touch the ingredients, and the deaf baker will need to help the two communicate. Can we muddle through?!"
+    },
+    {
+      "starttime": "2026-02-13 3:00 PM",
       "duration": 30,
-      "title": "Jesse's Kindergarten Korner",
-      "host": "TBA",
-      "floor": 1
+      "title": "FFXIV Arcadian Raid Review",
+      "host": "Nexis, Dan, & Duncan",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "The newest raid tier has been the best one yet! Meshing Final Fantasy summons with wrestling tropes and amazing music. We've had a Queen Bee idol, Disco Frog, and more playing it up for the cameras and embracing their Face/Heel roles! We're going to rank the 12 fights based on music, mechanics, and aesthetic!"
     },
     {
-      "starttime": "2025-11-14 1:30 PM",
-      "duration": 60,
-      "title": "Valentine's Day Exchange",
-      "host": "TBA",
-      "floor": 2
-    },
-    {
-      "starttime": "2025-11-14 2:30 PM",
-      "duration": 60,
-      "title": "Keep Talking and Nobody Brickspoldes - Keep Talking and Nobody Brickspoldes",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-14 3:30 PM",
+      "starttime": "2026-02-13 3:30 PM",
       "duration": 30,
-      "title": "Let's Play Steve Jackson's Sorcery",
-      "host": "TBA",
-      "floor": 3
+      "title": "The FNAF Lore in 20 minutes",
+      "host": "Grayson",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "I've only got 20 minutes to explain the Lore of Five Nights at Freddy's (according to the first 7 Video Games) so sit down and shut up because that's not nearly enough time. We've only got some environmental story telling, 8-bit death mini games, fake endings, some newspaper clippings, Steam store page descriptions, and voice lines to go off of to piece this together. And so help me there's almost nothing written in stone to go off of. So this Timeline is more of a theory, a Game Theory."
     },
     {
-      "starttime": "2025-11-14 4:00 PM",
-      "duration": 60,
-      "title": "BAMily Feud",
-      "host": "TBA",
-      "floor": 3
+      "starttime": "2026-02-13 4:00 PM",
+      "duration": 30,
+      "title": "The FNAF books are important too, I promise!",
+      "host": "Kat",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "You may have just learned the plot of Five Nights at Freddies, but did you know there are 20+ books that give more unique implications on the lore. Come hear about robot kids, fazgoo and a man with many ballerina robots in his tummy."
     },
     {
-      "starttime": "2025-11-14 5:00 PM",
+      "starttime": "2026-02-13 4:30 PM",
+      "duration": 30,
+      "title": "Scurvy",
+      "host": "Carl",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Webster's Dictionary describes scurvy as…."
+    },
+    {
+      "starttime": "2026-02-13 5:00 PM",
       "duration": 60,
-      "title": "INTERMISSION! (No Panels)",
-      "host": "TBA",
+      "title": "REGACKTED (No Panels)",
+      "host": null,
       "floor": null
     },
     {
-      "starttime": "2025-11-14 6:00 PM",
-      "duration": 30,
-      "title": "Tour de GACKcon",
-      "host": "TBA",
-      "floor": null
-    },
-    {
-      "starttime": "2025-11-14 6:30 PM",
-      "duration": 30,
-      "title": "Kingdom Hearts Explained in 20 Minutes",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-14 7:00 PM",
-      "duration": 30,
-      "title": "Learn to Pokemon ROM Hack - Play your Ultimate 151",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-14 7:30 PM",
+      "starttime": "2026-02-13 6:00 PM",
       "duration": 60,
-      "title": "Horror Movie Tier Maker 2024 Edition",
-      "host": "TBA",
-      "floor": 3
+      "title": "Japanese Alcohol Tasting",
+      "host": "Nexis, Dan, Grayson, Kat, Jesse, Louis",
+      "floor": 3,
+      "tags": [
+        "Presentation",
+        "Drink"
+      ],
+      "description": "We went to Japan and brought back a bunch of random drinks. We're going to taste them and rank them. The audience is welcome to any extra."
     },
     {
-      "starttime": "2025-11-14 8:30 PM",
+      "starttime": "2026-02-13 7:00 PM",
+      "duration": 60,
+      "title": "Um, GACKtually!",
+      "host": "Kyle, Carly, & Claire",
+      "floor": 3,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "From strigoi to Bat Boy, nerds like a lot of things, but there's something they love above all else: correcting people! This is Um, GACKtually, a game of nerdy corrections. We'll have a series of incorrect statements based on the nerd things you love, you just have to buzz in and correct us. Based on Dropout's hit game show Um, Actually"
+    },
+    {
+      "starttime": "2026-02-13 8:00 PM",
+      "duration": 60,
+      "title": "TierMaker Court: Night Court",
+      "host": "Tim",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "TierMaker Court but spicier"
+    },
+    {
+      "starttime": "2026-02-13 9:00 PM",
       "duration": 90,
-      "title": "Bar Pretender 2: A False Potion",
-      "host": "TBA",
-      "floor": 1
+      "title": "Bar Pretender 3: Syzygy",
+      "host": "Jason",
+      "floor": 1,
+      "tags": [
+        "Game Show",
+        "Drink"
+      ],
+      "description": "When the stars align, strange things begin to occur. Perhaps strangest is the behavior at the local bar, where the bartenders are going off menu. They seem to be following strange, cryptic instructions that only they seem to be able to decipher. Whoever they are making these for, one things is clear - only one will win the favor of whoever or whatever is instructing them."
     },
     {
-      "starttime": "2025-11-14 10:00 PM",
+      "starttime": "2026-02-13 10:30 PM",
       "duration": 60,
-      "title": "Dr Magnethands",
-      "host": "TBA",
-      "floor": 3
+      "title": "The Russian Charades of Hear Me Out Cakes",
+      "host": "Kat",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Our panel will begin with a traditional hear me out cake (conventionally attractive characters will be disqualified). Once everyone has had a chance to justify their choices, we will switch to a game of smash or pass. Finally we will take three smashes at random and as a group have to designate fuck/marry/kill."
     },
     {
-      "starttime": "2025-11-14 11:00 PM",
-      "duration": 120,
+      "starttime": "2026-02-13 11:30 PM",
+      "duration": 30,
+      "title": "Omegaverse 101: Knots, Slick, and More",
+      "host": "Jennifer & Nexis",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Step into the deliciously chaotic world of Omegaverse. Learn about heats and ruts, scenting and why it matters, pack bonds, and how exactly does a knot work?\nWe'll unpack things that cause a major draw to the Omegaverse genre. Whether you're a seasoned Omega-verse devotee or just here to find out what \"slick\" actually is, come prepared for laughs and maybe secondhand thirst."
+    },
+    {
+      "starttime": "2026-02-13 11:30 PM",
+      "duration": 30,
       "title": "RAVE",
-      "host": "TBA",
-      "floor": 1
+      "host": "DJ Carl",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "It's rave time!"
     },
     {
-      "starttime": "2025-11-14 11:00 PM",
-      "duration": 60,
-      "title": "Hear Me Out cake",
-      "host": "TBA",
-      "floor": 3
+      "starttime": "2026-02-14 12:00 AM",
+      "duration": 15,
+      "title": "HYPER RAVE",
+      "host": "DJ Carl",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "It's rave time!"
     },
     {
-      "starttime": "2025-11-16 12:00 AM",
-      "duration": 120,
-      "title": "FRAT GAMES",
-      "host": "TBA",
-      "floor": 2
+      "starttime": "2026-02-14 12:15 AM",
+      "duration": 105,
+      "title": "Movie Time! Vertical Dramas Edition",
+      "host": "Kat",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Imagine if a movie was just a series of TikToks strung together. Duanju or Vertical Dramas have been around since 2013 in China, but didn't make it to the US market until 2024. Come watch one of these soap operatic treasures with us, and laugh along."
     },
     {
-      "starttime": "2025-11-15 11:00 AM",
-      "duration": 60,
-      "title": "4th Annual Egg-Off!",
-      "host": "TBA",
-      "floor": 1
-    },
-    {
-      "starttime": "2025-11-15 12:00 PM",
+      "starttime": "2026-02-14 12:15 AM",
       "duration": 30,
-      "title": "The Coffee Challenge",
-      "host": "TBA",
-      "floor": 3
+      "title": "RAVE",
+      "host": "DJ Carl",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "It's rave time!"
     },
     {
-      "starttime": "2025-11-15 12:30 PM",
+      "starttime": "2026-02-14 11:00 AM",
+      "duration": 60,
+      "title": "5th Annual Egg Off",
+      "host": "Carl",
+      "floor": 1,
+      "tags": [
+        "Activity",
+        "Food"
+      ],
+      "description": "Egg"
+    },
+    {
+      "starttime": "2026-02-14 12:00 PM",
+      "duration": 60,
+      "title": "I Did a Thing",
+      "host": "Rob",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "We all did a lot of things in 2025. Share a short presentation of your travels, events, hobbies, etc to a captive audience"
+    },
+    {
+      "starttime": "2026-02-14 1:00 PM",
+      "duration": 60,
+      "title": "Horror Movie Tie Maker 2025 Edition",
+      "host": "Nexis, Louis, Allie, Tim & Rob",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "We love horror movies! We love ranking things! Come hear about the highs, lows, and hidden gems of 2025!"
+    },
+    {
+      "starttime": "2026-02-14 2:00 PM",
+      "duration": 60,
+      "title": "Public Service Announcements",
+      "host": "Kas",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "A series of short presentations with some (hopefully) useful information. Feel free to share your own niche knowledge!"
+    },
+    {
+      "starttime": "2026-02-14 3:00 PM",
+      "duration": 60,
+      "title": "Tiraney's Speling Bee",
+      "host": "David, James, & Tiraney",
+      "floor": 1,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "A \"Normal\" \"Friendly\" \"Spelling Bee\""
+    },
+    {
+      "starttime": "2026-02-14 4:00 PM",
       "duration": 30,
-      "title": "Reality TV in 2024",
-      "host": "TBA",
-      "floor": 3
+      "title": "St. Valentine's Ransom Notes",
+      "host": "Rob & Tim",
+      "floor": 2,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Come decorate Valentine's Day boxes and exchange ransom notes, cryptic warnings, thinly veiled threats. Magazines and newspapers are available for that distinct cut & paste look."
     },
     {
-      "starttime": "2025-11-15 1:00 PM",
-      "duration": 60,
-      "title": "Puzzle Setting 101",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-15 2:00 PM",
-      "duration": 60,
-      "title": "Narrowing down to the ultimate 151 Pokemon",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-15 3:00 PM",
+      "starttime": "2026-02-14 4:30 PM",
       "duration": 30,
-      "title": "3e and 43: the Bush Years",
-      "host": "TBA",
-      "floor": 3
+      "title": "Summary Wars",
+      "host": "Gweir",
+      "floor": 3,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "How quickly can you read and summarize a Wikipedia article to a crowd? Could you do it in five minutes? Come find out, or just sit in the audience and learn something new as volunteers attempt to teach us about things they (probably) never knew before. Contestants will be rated on accuracy, engagement, and entertainment value."
     },
     {
-      "starttime": "2025-11-15 3:30 PM",
+      "starttime": "2026-02-14 5:00 PM",
       "duration": 60,
-      "title": "Lightning Talks",
-      "host": "TBA",
-      "floor": 1
+      "title": "REGACKTED (No Panels)",
+      "host": null,
+      "floor": null
     },
     {
-      "starttime": "2025-11-15 4:30 PM",
+      "starttime": "2026-02-14 6:00 PM",
       "duration": 30,
       "title": "AMV Contest",
-      "host": "TBA",
-      "floor": 1
+      "host": "Grayson",
+      "floor": 1,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Come watch the AMVs (Anime Music Videos) made by people at the convention and vote for your favorites!"
     },
     {
-      "starttime": "2025-11-15 6:00 PM",
-      "duration": 60,
-      "title": "Tieranee's Spelling Bee",
-      "host": "TBA",
-      "floor": 1
-    },
-    {
-      "starttime": "2025-11-15 7:00 PM",
-      "duration": 60,
-      "title": "Um, GACKtually",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-15 8:00 PM",
+      "starttime": "2026-02-14 6:30 PM",
       "duration": 30,
-      "title": "A Dungeons and Dragons Murder Mystery (D&DMM)",
-      "host": "TBA",
-      "floor": 1
+      "title": "Mead Making 101",
+      "host": "Matthias",
+      "floor": 1,
+      "tags": [
+        "Presentation",
+        "Drink"
+      ],
+      "description": "Drink mead while you learn how to make your own!"
     },
     {
-      "starttime": "2025-11-15 8:30 PM",
-      "duration": 30,
-      "title": "PowerPoint Karaoke",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-15 9:00 PM",
+      "starttime": "2026-02-14 7:00 PM",
       "duration": 60,
-      "title": "Tier Maker Night Court",
-      "host": "TBA",
-      "floor": 3
+      "title": "X-File #5XOXOUWU",
+      "host": "Rob",
+      "floor": 2,
+      "tags": [
+        "Activity"
+      ],
+      "description": "SexLethal shares his 5 favorite X-files episodes through a Puzzled Pints-style packet of logic puzzles. Event includes time to work on puzzles, short presentation , advice, and drink pairing."
     },
     {
-      "starttime": "2025-11-15 10:00 PM",
+      "starttime": "2026-02-14 7:00 PM",
+      "duration": 30,
+      "title": "Fake News Returns",
+      "host": "Gweir",
+      "floor": 1,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "Four would-be news anchors will read complete bullshit off a teleprompter and try not to laugh. Come laugh at them and make it harder!"
+    },
+    {
+      "starttime": "2026-02-14 7:30 PM",
+      "duration": 30,
+      "title": "Christmas Karaoke",
+      "host": "Kas",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "For people who are weirdly obsessed with a genre of music that is only socially acceptable to listen to for 6 weeks out of the year. Singing ability not required."
+    },
+    {
+      "starttime": "2026-02-14 8:00 PM",
+      "duration": 60,
+      "title": "That time I got Isekai'd into a raid!",
+      "host": "Nexis, Dan, Kaltoro",
+      "floor": 1,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "Join us in a guess who style party building game. Audience members will get a random character from popular media. We will ask questions about your character and bid to place you somewhere in our teams. We will try to build the best raid teams without knowing the characters. At the end you can decide who built the best team. No MMO knowledge is needed!"
+    },
+    {
+      "starttime": "2026-02-14 8:00 PM",
+      "duration": 30,
+      "title": "Japanese Language Learning",
+      "host": "Jesse & Gweir",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "I spent the last year trying to learn Japanese.  Let's talk about what works, what doesn't and what weird stuff I've uncovered.  Did you know rabbits are birds and that green is blue?"
+    },
+    {
+      "starttime": "2026-02-14 8:30 PM",
+      "duration": 60,
+      "title": "Pepe Silvia PowerPoint Karaoke",
+      "host": "Rob",
+      "floor": 3,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "You cracked a so-called 'conspiracy theory' and even have all the proof you need (conveniently in PPT format). Can you sway the audience, or are you just some crackpot?"
+    },
+    {
+      "starttime": "2026-02-14 9:00 PM",
+      "duration": 30,
+      "title": "Bluffing Battleshots",
+      "host": "Chris & Kat Ramage",
+      "floor": 1,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "Two incredibly competitive siblings work to deceive each other. Our battleship boards are replaced with a field of shotglasses, where ships are soju and misses are water. We will never know if our guess is a hit or miss; we have to deduce by the reaction to the shot."
+    },
+    {
+      "starttime": "2026-02-14 9:30 PM",
+      "duration": 30,
+      "title": "Smash/Pass Cryptid Monsters",
+      "host": "Jennifer & Nexis",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Are you ready to question your life choices and your thirst levels? We will run through a lineup of cryptids and monsters to decide once and for all: smash or pass?\nJoin fellow degenerates as we debate desirability, anatomy, red flags vs. green flags, and which monsters might actually treat you right. Expect chaotic energy and audience participation is required."
+    },
+    {
+      "starttime": "2026-02-14 9:30 PM",
+      "duration": 60,
+      "title": "Lets Play: Slay the Princess",
+      "host": "Daniel",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "\"The most terrifying thing of all is to leave one's heart unshared\"\nLet's explore this choose your own adventure journey of emotion together."
+    },
+    {
+      "starttime": "2026-02-14 10:00 PM",
+      "duration": 60,
+      "title": "Dr Magic Hands",
+      "host": "Chris Gibson",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "The superhero storytelling game is back, in fantasy form! Can your intrepid crowd of heroes conquer the dungeon?"
+    },
+    {
+      "starttime": "2026-02-14 10:30 PM",
+      "duration": 90,
+      "title": "Retro Game Randomizer",
+      "host": "Jesse",
+      "floor": 3,
+      "tags": [
+        "Game Show"
+      ],
+      "description": "Ready to play some odd or poorly designed games?  We'll be doing a single elimination tournament where you'll compete against your friends playing weird and possibly unplayable games from ages past."
+    },
+    {
+      "starttime": "2026-02-14 11:00 PM",
       "duration": 120,
-      "title": "Retro Game Randomizer 2025",
-      "host": "TBA",
-      "floor": 3
+      "title": "Karaoke",
+      "host": "WonderJen",
+      "floor": 1,
+      "tags": [
+        "Activity"
+      ],
+      "description": "It's time to sing! :D"
     },
     {
-      "starttime": "2025-11-16 1:00 PM",
+      "starttime": "2026-02-15 12:00 AM",
+      "duration": 120,
+      "title": "FRAT GAMES",
+      "host": "Kat",
+      "floor": 2,
+      "tags": [
+        "Activity",
+        "Drink"
+      ],
+      "description": "Come help us kill the keg! There will be beer pong! There will be chandelier! There will be a flip cup tournament! All skill levels are welcome - we love games and we love to teach them. (all games can be played with no alcohol, for any reason)"
+    },
+    {
+      "starttime": "2026-02-15 12:00 PM",
       "duration": 60,
-      "title": "Tier Maker Court",
-      "host": "TBA",
-      "floor": 3
+      "title": "Return of Mahjong",
+      "host": "Rob & Tim",
+      "floor": 1,
+      "tags": [
+        "Activity",
+        "Food"
+      ],
+      "description": "Celebrate Lunar New Year with steamed buns, hot coffee, and riichi mahjong. Includes tutorials for beginners."
     },
     {
-      "starttime": "2025-11-16 2:00 PM",
-      "duration": 60,
-      "title": "A Spoiler Free Guide to Twin Cities Escape Rooms",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-16 3:00 PM",
-      "duration": 60,
-      "title": "Ecology of DeviantArt",
-      "host": "TBA",
-      "floor": 3
-    },
-    {
-      "starttime": "2025-11-16 4:00 PM",
+      "starttime": "2026-02-15 1:00 PM",
       "duration": 30,
-      "title": "Mini Painting 101",
-      "host": "TBA",
-      "floor": 3
+      "title": "New Reality TV in 2025",
+      "host": "Kat",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "A snapshot look at twentyish brand new reality shows that came out last year. They may be new, but are they original ideas?"
     },
     {
-      "starttime": "2025-11-16 4:30 PM",
+      "starttime": "2026-02-15 1:30 PM",
       "duration": 30,
-      "title": "Breaking News: No Laughing Teleprompter",
-      "host": "TBA",
-      "floor": 3
+      "title": "Dinos of a Feather",
+      "host": "Sean",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "We've all heard of Archaeopteryx, but the past couple of decades have seen a revolution in our understanding of the evolution of birds from therapod dinosaurs. You'll learn all about the origin of feathers, the first birds, and the evolution of powered flight in this lineage - and you might be surprised to learn that these three innovations aren't necessarily the same thing."
     },
     {
-      "starttime": "2025-11-16 6:00 PM",
+      "starttime": "2026-02-15 2:00 PM",
       "duration": 60,
-      "title": "Truth or Truth or Bath: An Oral History",
-      "host": "TBA",
-      "floor": 3
+      "title": "Finding Stuff on the Ground and Eating It",
+      "host": "Laura",
+      "floor": 1,
+      "tags": [
+        "Presentation",
+        "Food"
+      ],
+      "description": "Foraging in Minnesota and sampling foraged foods from summer 2025"
     },
     {
-      "starttime": "2025-11-16 7:00 PM",
+      "starttime": "2026-02-15 3:00 PM",
       "duration": 60,
-      "title": "Scary Stories to Share in the Dark",
-      "host": "TBA",
-      "floor": 3
+      "title": "Flight Simming 101: Knobs, Sticks, and Cockpits",
+      "host": "Ben Flood",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Airplanes are the closest things we have to mechs, and just as cool, but they're expensive and dangerous. What if you could fly an infinite number of them from the comfort of your basement on a video game system? Join Ben as he surveys the hobby of recreational flight simming from ACE COMBAT to X-Plane, and speculates on the state of it in 2026 and onward."
     },
     {
-      "starttime": "2025-11-16 8:00 PM",
+      "starttime": "2026-02-15 4:00 PM",
       "duration": 60,
-      "title": "GACKcon Feedback Panel",
-      "host": "TBA",
-      "floor": 3
+      "title": "TierMaker Court",
+      "host": "Tim",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Court is back in session for rating very important matters"
+    },
+    {
+      "starttime": "2026-02-15 5:00 PM",
+      "duration": 60,
+      "title": "REGACKTED (No Panels)",
+      "host": null,
+      "floor": null
+    },
+    {
+      "starttime": "2026-02-15 6:00 PM",
+      "duration": 30,
+      "title": "Oui-oui-aboos and Other Phenomena: Japan Fever Across the Globe",
+      "host": "Gweir",
+      "floor": 3,
+      "tags": [
+        "Presentation"
+      ],
+      "description": "Those of us that watch any amount of anime can probably name the influential series that got us in to the medium, but what about the rest of the world? How did France of all places become the global leader of manga imports, what is Cool Japan, and why is the largest giant robot statue in the world in Riyadh? Answers to these questions and more as we look at the history and current landscape of weebdom around the world."
+    },
+    {
+      "starttime": "2026-02-15 6:30 PM",
+      "duration": 60,
+      "title": "A GACKery of Regrettable Foods",
+      "host": "Meredith & Kas",
+      "floor": 3,
+      "tags": [
+        "Presentation",
+        "Food"
+      ],
+      "description": "I came here to eat aspic and chew bubblegum, and I'm all out of bubblegum."
+    },
+    {
+      "starttime": "2026-02-15 7:30 PM",
+      "duration": 60,
+      "title": "GACKdle",
+      "host": "Rob",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "Hyper local daily games"
+    },
+    {
+      "starttime": "2026-02-15 8:30 PM",
+      "duration": 30,
+      "title": "Feedback Panel",
+      "host": "GACK",
+      "floor": 3,
+      "tags": [
+        "Activity"
+      ],
+      "description": "How do you think the convention went? Come tell us! We use your feedback to see what works well, and what needs to be changed for next year. Be the change you wish to see and all that…"
     }
   ]
 }
