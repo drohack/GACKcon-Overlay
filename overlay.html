@@ -75,6 +75,42 @@
             align-items: stretch;
         }
 
+        .current-content.dual-panels {
+            gap: 5px;
+        }
+
+        .current-panel {
+            display: flex;
+            flex: 1;
+            align-items: stretch;
+            min-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .current-content.dual-panels .current-panel {
+            padding: 0;
+            margin: 0;
+        }
+
+        .current-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .current-meta .current-floor {
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .current-content.dual-panels .current-panel:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            padding-right: 5px;
+            margin-right: 0;
+        }
+
         .current-info {
             flex: 1;
             display: flex;
@@ -96,6 +132,11 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
         }
 
+        .current-content.dual-panels .current-title {
+            font-size: 13px;
+            -webkit-line-clamp: 1;
+        }
+
         .current-title.text-wraps {
             font-size: 14px;
         }
@@ -103,6 +144,10 @@
         .current-host {
             color: #a0a0a0;
             font-size: 12px;
+        }
+
+        .current-content.dual-panels .current-host {
+            font-size: 10px;
         }
 
         .current-floor {
@@ -113,6 +158,10 @@
             font-size: 20px;
             white-space: nowrap;
             color: #ffffff;
+        }
+
+        .current-content.dual-panels .current-floor {
+            font-size: 16px;
         }
 
         .current-floor.floor-1 { color: #d88aa6; }
@@ -218,13 +267,25 @@
             flex-direction: column;
         }
 
+        .next-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+
         .next-label {
             color: #ffa500;
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 3px;
+        }
+
+        .next-header-time {
+            color: #ffa500;
+            font-size: 14px;
+            font-weight: 700;
         }
 
         .next-content {
@@ -232,6 +293,42 @@
             gap: 12px;
             flex: 1;
             align-items: stretch;
+        }
+
+        .next-content.dual-panels {
+            gap: 5px;
+        }
+
+        .next-panel {
+            display: flex;
+            flex: 1;
+            align-items: stretch;
+            min-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .next-content.dual-panels .next-panel {
+            padding: 0;
+            margin: 0;
+        }
+
+        .next-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .next-meta .next-floor {
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .next-content.dual-panels .next-panel:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            padding-right: 5px;
+            margin-right: 0;
         }
 
         .next-info {
@@ -255,6 +352,11 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
         }
 
+        .next-content.dual-panels .next-title {
+            font-size: 13px;
+            -webkit-line-clamp: 1;
+        }
+
         .next-title.text-wraps {
             font-size: 14px;
         }
@@ -264,10 +366,20 @@
             font-size: 12px;
         }
 
+        .next-content.dual-panels .next-host {
+            font-size: 10px;
+        }
+
         .next-badges {
             display: flex;
             gap: 15px;
             align-items: center;
+        }
+
+        .next-content.dual-panels .next-badges {
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-end;
         }
 
         .next-time {
@@ -277,11 +389,19 @@
             white-space: nowrap;
         }
 
+        .next-content.dual-panels .next-time {
+            font-size: 16px;
+        }
+
         .next-floor {
             font-weight: 700;
             font-size: 20px;
             white-space: nowrap;
             color: #ffffff;
+        }
+
+        .next-content.dual-panels .next-floor {
+            font-size: 16px;
         }
 
         .next-floor.floor-1 { color: #d88aa6; }
@@ -769,68 +889,183 @@
             return Math.ceil(diffMs / 60000);
         }
 
-        // Update current panel info
-        function updateCurrentPanel(title, host, floor) {
-            const titleEl = document.getElementById('currentTitle');
-            titleEl.textContent = title;
-            titleEl.classList.remove('text-wraps');
-
-            document.getElementById('currentHost').textContent = `Hosted by ${host}`;
-            const floorEl = document.getElementById('currentFloor');
-
-            if (floor === null || floor === undefined) {
-                floorEl.style.display = 'none';
-            } else {
-                floorEl.style.display = 'flex';
-                floorEl.textContent = formatFloor(floor);
-                floorEl.className = 'current-floor';
-                floorEl.classList.add(getFloorClass(floor));
+        // Update current panel info (supports 1 or 2 simultaneous panels)
+        function updateCurrentPanel(panels) {
+            // Ensure panels is an array
+            if (!Array.isArray(panels)) {
+                panels = [panels];
             }
 
-            // Check if title wraps and apply smaller font
-            requestAnimationFrame(() => {
-                if (titleEl.scrollHeight > titleEl.clientHeight) {
-                    titleEl.classList.add('text-wraps');
+            const contentEl = document.querySelector('.current-content');
+            const isDual = panels.length === 2;
+
+            // Set dual-panels class
+            if (isDual) {
+                contentEl.classList.add('dual-panels');
+            } else {
+                contentEl.classList.remove('dual-panels');
+            }
+
+            // Build HTML for panels
+            let html = '';
+            panels.forEach(panel => {
+                const floorClass = panel.floor ? getFloorClass(panel.floor) : '';
+
+                if (isDual) {
+                    // Dual panel: put floor on same line as host (right-aligned)
+                    const floorDisplay = panel.floor ? `<span class="current-floor ${floorClass}">${formatFloor(panel.floor)}</span>` : '';
+                    html += `
+                        <div class="current-panel">
+                            <div class="current-info">
+                                <div class="current-title">${panel.title}</div>
+                                <div class="current-meta">
+                                    <span class="current-host">Hosted by ${panel.host || 'TBA'}</span>
+                                    ${floorDisplay}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Single panel: floor on the right side
+                    const floorDisplay = panel.floor ? `
+                        <div class="current-floor ${floorClass}">${formatFloor(panel.floor)}</div>
+                    ` : '';
+                    html += `
+                        <div class="current-panel">
+                            <div class="current-info">
+                                <div class="current-title">${panel.title}</div>
+                                <div class="current-host">Hosted by ${panel.host || 'TBA'}</div>
+                            </div>
+                            ${floorDisplay}
+                        </div>
+                    `;
                 }
             });
+
+            contentEl.innerHTML = html;
         }
 
-        // Update next panel
-        function updateNextPanel(next) {
-            if (!next) return;
+        // Update next panel (supports 1 or 2 simultaneous panels)
+        function updateNextPanel(panels) {
+            if (!panels || panels.length === 0) return;
 
-            const titleEl = document.getElementById('nextTitle');
-            titleEl.textContent = next.title;
-            titleEl.classList.remove('text-wraps');
-
-            document.getElementById('nextHost').textContent = `Hosted by ${next.host || 'TBA'}`;
-
-            const floorEl = document.getElementById('nextFloor');
-            if (next.floor === null || next.floor === undefined) {
-                floorEl.style.display = 'none';
-            } else {
-                floorEl.style.display = 'flex';
-                floorEl.textContent = formatFloor(next.floor);
-                floorEl.className = 'next-floor';
-                floorEl.classList.add(getFloorClass(next.floor));
+            // Ensure panels is an array
+            if (!Array.isArray(panels)) {
+                panels = [panels];
             }
 
-            const minutes = getMinutesUntil(next.starttime);
-            const timeEl = document.getElementById('nextTime');
-            if (minutes <= 0) {
-                timeEl.textContent = 'starting now';
+            const nextSection = document.querySelector('.next-section');
+            const contentEl = document.querySelector('.next-content');
+            const isDual = panels.length === 2;
+
+            // Set dual-panels class
+            if (isDual) {
+                contentEl.classList.add('dual-panels');
+            } else {
+                contentEl.classList.remove('dual-panels');
+            }
+
+            // Calculate time until (same for all panels since they start together)
+            const minutes = getMinutesUntil(panels[0].starttime);
+            let timeText;
+            if (minutes <= 0 && minutes > -1) {
+                timeText = 'starting now'; // Show only when within 1 minute before/after start
             } else if (minutes === 1) {
-                timeEl.textContent = 'in 1 min';
+                timeText = 'in 1 min';
             } else {
-                timeEl.textContent = `in ${minutes} min`;
+                timeText = `in ${minutes} min`;
             }
 
-            // Check if title wraps and apply smaller font
-            requestAnimationFrame(() => {
-                if (titleEl.scrollHeight > titleEl.clientHeight) {
-                    titleEl.classList.add('text-wraps');
+            // Update header with time if dual panels
+            let headerEl = nextSection.querySelector('.next-section-header');
+            if (isDual) {
+                if (!headerEl) {
+                    // Create header if it doesn't exist
+                    headerEl = document.createElement('div');
+                    headerEl.className = 'next-section-header';
+                    const labelEl = nextSection.querySelector('.next-label');
+                    nextSection.insertBefore(headerEl, labelEl);
+                    headerEl.appendChild(labelEl);
+                }
+                headerEl.innerHTML = `
+                    <div class="next-label">UP NEXT</div>
+                    <div class="next-header-time">${timeText}</div>
+                `;
+            } else {
+                // Remove header if it exists and restore normal label
+                if (headerEl) {
+                    const labelEl = headerEl.querySelector('.next-label');
+                    nextSection.insertBefore(labelEl, contentEl);
+                    headerEl.remove();
+                }
+            }
+
+            // Build HTML for panels
+            let html = '';
+            panels.forEach((panel, index) => {
+                const floorClass = panel.floor ? getFloorClass(panel.floor) : '';
+
+                if (isDual) {
+                    // Dual panel: put floor on same line as host (right-aligned), time in header
+                    const floorDisplay = panel.floor ? `<span class="next-floor ${floorClass}">${formatFloor(panel.floor)}</span>` : '';
+
+                    html += `
+                        <div class="next-panel">
+                            <div class="next-info">
+                                <div class="next-title">${panel.title}</div>
+                                <div class="next-meta">
+                                    <span class="next-host">Hosted by ${panel.host || 'TBA'}</span>
+                                    ${floorDisplay}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Single panel: floor and time on the right side
+                    const floorDisplay = panel.floor ? `
+                        <div class="next-floor ${floorClass}">${formatFloor(panel.floor)}</div>
+                    ` : '';
+
+                    html += `
+                        <div class="next-panel">
+                            <div class="next-info">
+                                <div class="next-title">${panel.title}</div>
+                                <div class="next-host">Hosted by ${panel.host || 'TBA'}</div>
+                            </div>
+                            <div class="next-badges">
+                                ${floorDisplay}
+                                <div class="next-time">${timeText}</div>
+                            </div>
+                        </div>
+                    `;
                 }
             });
+
+            contentEl.innerHTML = html;
+        }
+
+        // Clear next panel when no upcoming events
+        function clearNextPanel() {
+            const nextSection = document.querySelector('.next-section');
+            const contentEl = document.querySelector('.next-content');
+
+            // Remove dual-panels class
+            contentEl.classList.remove('dual-panels');
+
+            // Clear any header
+            const headerEl = nextSection.querySelector('.next-section-header');
+            if (headerEl) {
+                const labelEl = headerEl.querySelector('.next-label');
+                nextSection.insertBefore(labelEl, contentEl);
+                headerEl.remove();
+            }
+
+            // Show "No more events" message
+            contentEl.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; flex: 1; color: #606060; font-size: 14px; font-style: italic;">
+                    No more events scheduled
+                </div>
+            `;
         }
 
         // Update full schedule sidebar with timeline view
@@ -1112,22 +1347,32 @@
                     minutes: getMinutesUntil(item.starttime)
                 }));
 
-                // Find current panel (started but not ended yet)
-                const currentPanel = scheduleWithTiming
+                // Find all current panels (started but not ended yet)
+                const currentPanels = scheduleWithTiming
                     .filter(item => item.minutes < 0 && item.minutes > -item.duration) // Started, but not ended
-                    .sort((a, b) => b.minutes - a.minutes)[0]; // Most recent
+                    .sort((a, b) => b.minutes - a.minutes); // Most recent first
 
-                if (currentPanel) {
-                    updateCurrentPanel(currentPanel.title, currentPanel.host || 'TBA', currentPanel.floor);
+                if (currentPanels.length > 0) {
+                    updateCurrentPanel(currentPanels);
                 }
 
-                // Find next upcoming panel
+                // Find next upcoming panels (events within 30 seconds of starting or future events)
                 const upcoming = scheduleWithTiming
-                    .filter(item => item.minutes >= 0)
+                    .filter(item => item.minutes >= 0 || (item.minutes < 0 && item.minutes > -1)) // Future or just started (within 1 min)
                     .sort((a, b) => a.minutes - b.minutes);
 
                 if (upcoming.length > 0) {
-                    updateNextPanel(upcoming[0]);
+                    // Get all panels that start at the same time as the first upcoming
+                    const nextStartTime = upcoming[0].starttime;
+                    const nextPanels = upcoming.filter(item => item.starttime === nextStartTime);
+
+                    // Only show if not already running for more than 30 seconds
+                    if (nextPanels[0].minutes >= 0 || nextPanels[0].minutes > -1) {
+                        updateNextPanel(nextPanels);
+                    }
+                } else {
+                    // No more upcoming events - clear the UP NEXT section
+                    clearNextPanel();
                 }
 
                 // Update full schedule sidebar with only today's events
